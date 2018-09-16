@@ -1,0 +1,24 @@
+
+<mat-card>
+        
+    <mat-list>
+        <mat-list-item>
+          <h2>Drinks</h2>
+          <div class="spacer"></div>
+          Owned: {{this.getDrinkAmount()}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          Cost: ${{this.getDrinkCost()}}
+          <div class="spacer"></div>
+          <input matInput #amount type="number" placeholder="Drink Tickets" min="1">
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            Total: ${{this.getDrinkCost() * amount.value}}
+            <div class="spacer"></div>
+            <app-checkout [amount]="amount.value" [cost]="this.getDrinkCost()"></app-checkout>
+        </mat-list-item>
+    </mat-list>
+
+</mat-card>

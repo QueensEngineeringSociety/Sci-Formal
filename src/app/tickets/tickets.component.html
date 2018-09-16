@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-list>
+        <mat-list-item>
+            <h2>Ticket</h2>
+            
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngIf="!this.getTicketInfo()['ticket']">
+            Cost: ${{this.getTicketCost()}}
+            <div class="spacer"></div>
+            <app-checkout [amount]="1" [cost]="this.getTicketCost()"></app-checkout>
+        </mat-list-item>
+        <mat-list-item *ngIf="this.getTicketInfo()['ticket']">
+            Paid
+        </mat-list-item>
+    </mat-list>
+</mat-card>
