@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-list>
+      <mat-list-item>
+          <h2>Hour Logger</h2>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <input matInput #netId placeholder="NetId">
+        <span class="spacer"></span>
+        <button mat-raised-button color="primary" (click)="swipeIn(netId.value)">Swipe In</button>
+        <button mat-raised-button color="primary" (click)="swipeOut(netId.value)">Swipe out</button>
+      </mat-list-item>
+  </mat-list>
+</mat-card>
+
+<mat-card>
+  <mat-list>
+    <mat-list-item>
+        <h2>Logged In Users</h2>
+        <span class="spacer"></span>
+        <button mat-raised-button color="primary">Bulk Swipe Out</button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item *ngFor="let loggedIn of this.getSwipedIn()">
+      User: {{loggedIn.user.fname}} {{loggedIn.user.lname}}
+      <span class="spacer"></span>
+      Logged In At: {{loggedIn.signInTime.toLocaleString()}}
+    </mat-list-item>
+  </mat-list>
+</mat-card>

@@ -1,0 +1,27 @@
+<mat-card>
+  <h1>Sci Formal Login</h1>
+  <form [formGroup]="form" (ngSubmit)="login()">
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="fname" required>
+    <mat-error *ngIf="this.form.get('fname').invalid">Required</mat-error>
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Last Name" formControlName="lname" required>
+  <mat-error *ngIf="this.form.get('lname').invalid">Required</mat-error>
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="netId" formControlName="netId" required>
+  <mat-error *ngIf="this.form.get('netId').invalid">Required</mat-error>
+</mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="passwrd" required>
+      <mat-error *ngIf="this.form.get('passwrd').invalid">Required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" [type]="hide ? 'password' : 'text'" formControlName="passwrdConfirm" required>
+    <mat-error *ngIf="this.form.get('passwrdConfirm').value != this.form.get('passwrd').value">Passwords do not match</mat-error>
+</mat-form-field>
+<a [routerLink]="[{ outlets: { 'login': [''] } }]">Login</a>
+  <button mat-raised-button class="submit-btn"  mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Login</button>
+  </form>
+</mat-card>

@@ -1,0 +1,9 @@
+.mat-card {
+    display: grid;
+    width: 50%;
+    margin: 25%;
+}
+
+form {
+    display: grid;
+}

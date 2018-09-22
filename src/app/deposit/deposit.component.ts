@@ -7,6 +7,7 @@ import { TicketService } from '../ticket.service';
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
+  depositCost = null;
 
   constructor(private ticketService: TicketService) { }
 
@@ -18,7 +19,15 @@ export class DepositComponent implements OnInit {
   }
 
   getDepositCost(){
-    return this.ticketService.getDepositCost();
+    if (this.depositCost==null)
+       this.ticketService.getDepositCost().subscribe(
+        response => {
+            console.log(response);
+            this.depositCost = response.price;
+            },
+        err => console.log(err)
+      );
+    return this.depositCost
   }
 
   buyDeposit(){

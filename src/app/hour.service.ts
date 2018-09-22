@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-class shift {
-description: string;
-type: string;
-hours: number
+export class Shift {
+  description: string;
+  type: string;
+  hours: number
 }
 
 @Injectable({
@@ -21,12 +21,14 @@ export class HourService {
   }
 
   getDetailedHours() {
-    let hours: shift[] = []
+    let hours: Shift[] = []
     hours.push({description: 'Test1', type: 'Final', hours: 5})
     hours.push({description: 'Test2', type: 'Regular', hours: 5})
     hours.push({description: 'Test3', type: 'Regular', hours: 5})
 
     return hours
   }
+
+
 }
 

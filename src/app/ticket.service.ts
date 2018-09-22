@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getDrinkCost() {
     return 5;
   }
 
   getDepositCost() {
-    return 50;
+    return this.httpClient.get<any>("http://localhost:8000/api/depositCost");
   }
 
   getTicketCost() {

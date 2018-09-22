@@ -7,7 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { MyHttpInterceptor } from './my-http-interceptor'
 
 import {
   MatAutocompleteModule,
@@ -52,6 +53,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DrinksComponent } from './drinks/drinks.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { HoursComponent } from './hours/hours.component';
+import { HourLoggerComponent } from './hour-logger/hour-logger.component';
+import { MainComponent } from './main/main.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   exports: [
@@ -106,7 +110,10 @@ export class DemoMaterialModule {}
     CheckoutComponent,
     DrinksComponent,
     TicketsComponent,
-    HoursComponent
+    HoursComponent,
+    HourLoggerComponent,
+    MainComponent,
+    SignUpComponent
   ],
   imports: [
     DemoMaterialModule,
@@ -118,7 +125,13 @@ export class DemoMaterialModule {}
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { 
+        provide: HTTP_INTERCEPTORS, 
+        useClass: MyHttpInterceptor, 
+        multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

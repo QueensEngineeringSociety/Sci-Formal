@@ -1,8 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-
-export const globals = {
-  isLoggedIn: false,
-}
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +6,6 @@ export const globals = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   title = 'sci-formal';
-  global = globals; 
-
-
 }
 

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required]],
       passwrd: [null, Validators.required],
     });
   }
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     var passwrd = this.form.controls['passwrd'];
     
     if ((passwrd.valid && email.valid) && !(passwrd.pristine && email.pristine) ){
-      this.loginService.login();
+      this.loginService.login(email.value, passwrd.value);
+      console.log("HERE");
     }
     else {
       passwrd.updateValueAndValidity();

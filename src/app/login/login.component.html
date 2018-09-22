@@ -2,13 +2,14 @@
     <h1>Sci Formal Login</h1>
     <form [formGroup]="form" (ngSubmit)="login()">
     <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email" required>
+        <input matInput placeholder="Net Id" formControlName="email" required>
         <mat-error *ngIf="this.form.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="passwrd" required>
         <mat-error *ngIf="this.form.get('passwrd').invalid">{{getPasswrdErrorMessage()}}</mat-error>
     </mat-form-field>
+    <a [routerLink]="[{ outlets: { 'login': ['sign-up'] } }]">Create account</a>
     <button mat-raised-button class="submit-btn"  mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Login</button>
     </form>
 </mat-card>

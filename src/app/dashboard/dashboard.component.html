@@ -3,7 +3,7 @@
           <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
           <span>Sci-Formal</span>
           <span class="example-spacer"></span>
-          <span>Logout</span>
+          <button mat-icon-button (click)="logout()">Logout</button>
         </mat-toolbar-row>
 </mat-toolbar>
 
@@ -23,6 +23,9 @@
         </mat-list-item>
         <mat-list-item routerLink="/hours">
           Hours
+        </mat-list-item>
+        <mat-list-item routerLink="/hour-logger">
+          Hour Logger
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
