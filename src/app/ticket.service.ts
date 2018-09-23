@@ -29,8 +29,8 @@ export class TicketService {
     return true;
   }
 
-  buyDeposit() {
-    return true;
+  buyDeposit(token) {
+    return this.httpClient.post<any>("http://localhost:8000/api/buyDeposit", {"token":token.id, "email":token.email})
   }
 
   getDrinkAmount() {

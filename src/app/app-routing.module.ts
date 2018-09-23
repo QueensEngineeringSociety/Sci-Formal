@@ -10,10 +10,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 export const routes : Routes = [
   { path: 'deposit', component: DepositComponent},
-  { path: 'drinks', component: DrinksComponent},
-  { path: 'tickets', component: TicketsComponent},
-  { path: 'hours', component: HoursComponent},
-  { path: 'hour-logger', component: HourLoggerComponent},
+  // { path: 'drinks', component: DrinksComponent},
+  // { path: 'tickets', component: TicketsComponent},
+  // { path: 'hours', component: HoursComponent},
+  // { path: 'hour-logger', component: HourLoggerComponent},
   { path: '', component: LoginComponent, outlet: 'login'},
   { path: 'sign-up', component: SignUpComponent, outlet: 'login'},
 ]

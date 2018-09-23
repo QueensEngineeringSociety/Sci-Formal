@@ -23,10 +23,10 @@ export class LoginService {
   }
 
   login(netId:string, password:string ) {
-    return this.httpClient.post<any>("http://localhost:8000/api/login", {"email":netId,"password": password})
+    console.log(netId);
+    return this.httpClient.post<any>("http://localhost:8000/api/login", {"netid":netId,"password": password})
         .subscribe(
           response => {
-              console.log(response);
               this.setSession(response)
             },
           err => console.log(err)
@@ -38,7 +38,7 @@ export class LoginService {
             {"email":netId,"password": passwrd, "fname": fname, "lname": lname})
         .subscribe(
         response => {
-            console.log(response);
+            console.log("Signed Up");
             },
         err => console.log(err)
         );
@@ -46,7 +46,6 @@ export class LoginService {
         
   private setSession(authResult) {
       const expiresAt = moment().add(authResult.expiresIn,'second');
-      console.log("setSession");
       
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );

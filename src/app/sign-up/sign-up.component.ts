@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-sign-up',
@@ -13,11 +14,11 @@ export class SignUpComponent implements OnInit {
   form: FormGroup;
   hide = true;
 
-  constructor(private loginService : LoginService, private formBuilder: FormBuilder) { }
+  constructor(private loginService : LoginService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      netId: [null, [Validators.required, Validators.email]],
+      netId: [null, [Validators.required]],
       fname: [null, Validators.required],
       lname: [null, Validators.required],
       passwrd: [null, Validators.required],
@@ -52,4 +53,7 @@ export class SignUpComponent implements OnInit {
     return passwrd.hasError('required') ? 'You must enter a value' : '';
   }
 
+  routeSignIn(){
+    this.router.navigate(['']); 
+  }
 }
