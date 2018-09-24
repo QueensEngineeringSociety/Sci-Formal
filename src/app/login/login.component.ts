@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   hide = true;
+  loginError: string = '';
 
   constructor(private loginService : LoginService, private formBuilder: FormBuilder) { }
 
@@ -27,8 +28,18 @@ export class LoginComponent implements OnInit {
     var passwrd = this.form.controls['passwrd'];
     
     if ((passwrd.valid && email.valid) && !(passwrd.pristine && email.pristine) ){
-      this.loginService.login(email.value, passwrd.value);
-      console.log("HERE");
+      var temp = this.loginService.login(email.value, passwrd.value);
+      temp.subscribe(
+        response => {},
+        err => {
+          if(err.status == 401){
+            this.loginError = "No User with this netid and password found. Please try again."
+          }
+          else {
+            this.loginError = "Login Error please try again. If this error persists please contact a system administrator."
+          }
+           console.log(err)}
+      );
     }
     else {
       passwrd.updateValueAndValidity();

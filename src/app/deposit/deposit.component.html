@@ -6,14 +6,15 @@
             
         </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item *ngIf="!this.getTicketInfo()['deposit']">
+        <mat-list-item *ngIf="!this.getDepositInfo()">
             Cost: ${{this.getDepositCost()}}
             <div class="spacer"></div>
             <app-checkout [amount]="1" [cost]="this.getDepositCost()" (purchase)="this.onPurchase($event)"></app-checkout>
         </mat-list-item>
-        {{this.purchaceResponce}}
-        <mat-list-item *ngIf="this.getTicketInfo()['deposit']">
-            Paid
+        <p style="color: green;">{{this.purchaceSuccess}}</p>
+        <p style="color: red;">{{this.purchaceFail}}</p>
+        <mat-list-item *ngIf="this.getDepositInfo()">
+            Deposit Paid
         </mat-list-item>
     </mat-list>
 </mat-card>

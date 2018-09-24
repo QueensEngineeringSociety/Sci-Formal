@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { location } from './app.component';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class TicketService {
   }
 
   getDepositCost() {
-    return this.httpClient.get<any>("http://localhost:8000/api/depositCost");
+    return this.httpClient.get<any>(""+location+"/api/depositCost");
   }
 
   getTicketCost() {
@@ -30,7 +31,11 @@ export class TicketService {
   }
 
   buyDeposit(token) {
-    return this.httpClient.post<any>("http://localhost:8000/api/buyDeposit", {"token":token.id, "email":token.email})
+    return this.httpClient.post<any>(""+location+"/api/buyDeposit", {"token":token.id, "email":token.email})
+  }
+
+  getDepositInfo() {
+    return this.httpClient.get<any>(""+location+"/api/depostInfo")
   }
 
   getDrinkAmount() {

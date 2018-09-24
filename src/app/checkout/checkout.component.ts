@@ -24,16 +24,14 @@ export class CheckoutComponent implements OnInit {
   openCheckout() {
     var this_ = this
     var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+      key: 'pk_test_nbQ9lK9IYk4N7looSOezebAx',
       locale: 'auto',
       token: function (token: any) {
         this_.ticketService.buyDeposit(token).subscribe( 
           response => { 
-            console.log(response); 
             this_.purchase.emit(response);
           },
           err => {
-            console.log(err)
             this_.purchase.emit(err);
           }
         );

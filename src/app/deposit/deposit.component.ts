@@ -8,14 +8,24 @@ import { TicketService } from '../ticket.service';
 })
 export class DepositComponent implements OnInit {
   depositCost = null;
-  purchaceResponce = null;
+  purchaceSuccess = null;
+  purchaceFail = null;
+  deposit = null;
   constructor(private ticketService: TicketService) { }
 
   ngOnInit() {
   }
 
-  getTicketInfo(){
-    return this.ticketService.getTicketInfo();
+  getDepositInfo(){
+    if (this.deposit==null){
+      this.ticketService.getDepositInfo().subscribe(
+        response => {
+            this.deposit = response.deposit;
+            },
+        err => console.log(err)
+      );
+    }
+    return this.deposit
   }
 
   getDepositCost(){
@@ -30,7 +40,16 @@ export class DepositComponent implements OnInit {
   }
 
   onPurchase(event){
-    this.purchaceResponce = event;
+    console.log(event);
+    console.log(event.status);
+    if(event.status !== undefined){
+      let message: string  = event.error.message
+      this.purchaceFail = message
+      this.purchaceSuccess = ''
+    }
+    else{
+      this.purchaceSuccess = event.message;
+      this.purchaceFail = ''
+    }
   }
-
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import * as moment from "moment";
 import { tap, shareReplay, catchError } from "rxjs/operators";
+import { location } from './app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -24,24 +25,18 @@ export class LoginService {
 
   login(netId:string, password:string ) {
     console.log(netId);
-    return this.httpClient.post<any>("http://localhost:8000/api/login", {"netid":netId,"password": password})
-        .subscribe(
-          response => {
+    return this.httpClient.post<any>(""+location+"/api/login", {"netid":netId,"password": password})
+        .pipe(
+          tap(response => {
               this.setSession(response)
-            },
-          err => console.log(err)
+            }),
+            shareReplay()
         );
   }
 
   signUp(netId: string, passwrd: string, fname: string,lname: string){
-    return this.httpClient.post<any>("http://localhost:8000/api/newUser", 
-            {"email":netId,"password": passwrd, "fname": fname, "lname": lname})
-        .subscribe(
-        response => {
-            console.log("Signed Up");
-            },
-        err => console.log(err)
-        );
+    return this.httpClient.post<any>(""+location+"/api/newUser", 
+            {"netid":netId,"password": passwrd, "fname": fname, "lname": lname})
   }
         
   private setSession(authResult) {

@@ -13,6 +13,8 @@ export class SignUpComponent implements OnInit {
   
   form: FormGroup;
   hide = true;
+  signupSuccess = '';
+  signupFail = '';
 
   constructor(private loginService : LoginService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -36,8 +38,20 @@ export class SignUpComponent implements OnInit {
     if ((passwrd.valid && netId.valid && fname.valid && lname.valid && passwrdConfirm.valid) && 
         !(passwrd.pristine && netId.pristine && fname.pristine && lname.pristine && passwrdConfirm.pristine) &&
         (passwrd.value == passwrdConfirm.value)){
-      this.loginService.signUp(netId.value, passwrd.value, fname.value, lname.value);
-      console.log("HERE");
+      this.loginService.signUp(netId.value, passwrd.value, fname.value, lname.value).subscribe(
+        response => {
+            console.log(response);
+            this.signupSuccess = 'Sign Up Successful';
+            this.signupFail = '';
+            this.form.reset();
+            this.router.navigate(['']);
+            },
+        err => {
+          this.signupFail = 'Signed Up Failed';
+          this.signupSuccess = '';
+          console.log(err)
+        }
+        );
     }
     else {
       passwrd.updateValueAndValidity();
