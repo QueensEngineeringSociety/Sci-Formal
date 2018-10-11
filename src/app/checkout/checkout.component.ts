@@ -20,12 +20,12 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
   }
-
   openCheckout() {
     var this_ = this
     var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_nbQ9lK9IYk4N7looSOezebAx',
+      key: 'pk_live_Do2TZVeCWHyplaJOL7hVqWW1',
       locale: 'auto',
+      currency: 'cad',
       token: function (token: any) {
         this_.ticketService.buyDeposit(token).subscribe( 
           response => { 

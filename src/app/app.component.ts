@@ -9,5 +9,5 @@ export class AppComponent {
   title = 'sci-formal';
 }
 
-//export const location = "https://api.sciformal.engsoc.queensu.ca:8000";
-export const location = "http://localhost:8000";
+export const location = "https://api.sciformal.engsoc.queensu.ca";
+//export const location = "http://localhost:8000";
